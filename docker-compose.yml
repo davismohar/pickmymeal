@@ -1,0 +1,35 @@
+version: '3.8' # specify docker-compose version
+ 
+# Define the services/ containers to be run
+services:
+    pickmymeal-frontend: # define frontend service
+        container_name: pickmymeal-frontend
+        build: # specify the directory of the Dockerfile
+            pickmymeal-frontend
+            # dockerfile: Dockerfile-dev
+        volumes: # share Angular application directory with container
+            - './pickmymeal-frontend:/app'
+        ports: #specify ports mapping
+            - '4200:4200'
+        depends_on: 
+            - pickmymeal-backend
+ 
+    pickmymeal-backend:
+        container_name: pickmymeal-backend
+        build: 
+            express-server
+        volumes:
+            - './express-server:/app'
+        ports: 
+            - '4000:4000' 
+        depends_on: 
+            - pickmymeal-mongo
+ 
+    pickmymeal-mongo:
+        container_name: pickmymeal-mongo
+        image: # specify image to build container from
+            mongo:latest
+        volumes:
+            - './mongo-data:/data/db'
+        ports:
+            - '27017:27017'
