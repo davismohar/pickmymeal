@@ -40,9 +40,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    JwtInterceptor,
-    ErrorInterceptor
+    HttpClientModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
