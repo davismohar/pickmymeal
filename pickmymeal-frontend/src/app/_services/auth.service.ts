@@ -29,7 +29,7 @@ In addition, you can get an observable from behavior subject using the asObserva
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')).user);
+    this.currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
     // this is used by app.component.ts
     this.currentUser = this.currentUserSubject.asObservable();
   }
