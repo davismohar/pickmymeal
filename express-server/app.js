@@ -8,25 +8,25 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 // Our JWT logic. Uses express-jwt which is a middleware that validates JsonWebTokens and sets req.user.
-// const jwt = require('./_helpers/jwt');
+const jwt = require('./_helpers/jwt');
 
 
 // Our error handler
-// const errorHandler = require('./_helpers/error-handler');
+const errorHandler = require('./_helpers/error-handler');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-// app.use(jwt());
+app.use(jwt());
 
-// app.use('/user', require('./routes/user.router'));
+app.use('/user', require('./routes/user.router'));
 // app.use('/course', require('./routes/course.router'));
 //TODO: need to connect '/attendance' routes to the router.
 
 
 
-// app.use(errorHandler);
+app.use(errorHandler);
 
 
 // start server

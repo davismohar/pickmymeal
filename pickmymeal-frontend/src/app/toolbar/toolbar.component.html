@@ -1,1 +1,10 @@
-<p>toolbar works!</p>
+<mat-toolbar *ngIf="isUser">
+
+  <div>Hi, {{currentUser.username}}</div>
+
+  <button mat-button routerLink="/">Home</button>
+
+  <button mat-button routerLink="/admin" *ngIf="isProf">Registered users</button>
+
+  <button mat-button (click)="logout()">Logout </button>
+</mat-toolbar>

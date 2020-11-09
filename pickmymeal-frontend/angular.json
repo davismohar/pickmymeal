@@ -51,7 +51,7 @@
                   "maximumError": "5mb"
                 },
                 {
-                  "type": "anyComponentStyle",
+                  "type": "all",
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
@@ -119,6 +119,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "pickmymeal-frontend"
 }
