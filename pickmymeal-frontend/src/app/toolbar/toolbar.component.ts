@@ -25,7 +25,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.user.role === Role.admin;
+    return this.currentUser && this.currentUser.role === Role.admin;
   }
 
   get isUser() {

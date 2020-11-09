@@ -25,11 +25,11 @@ Unique features of a subject compared to an observable are:
     It is an observer in addition to being an observable so you can also send values to a subject in addition to subscribing to it.
 
 In addition, you can get an observable from behavior subject using the asObservable() method on BehaviorSubject. */
-  private currentUserSubject: BehaviorSubject<User>;
+  private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')).user);
     // this is used by app.component.ts
     this.currentUser = this.currentUserSubject.asObservable();
   }
