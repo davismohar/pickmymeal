@@ -42,6 +42,8 @@ In addition, you can get an observable from behavior subject using the asObserva
     console.log("authservice making request");
     return this.http.post<any>(`http://localhost:4000/user/authenticate`, { username, password })
       .pipe(map(user => {
+        console.log("response recieved ")
+        console.log(user);
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           user.courses = [];

@@ -1,10 +1,12 @@
 <mat-toolbar *ngIf="isUser">
 
-  <div>Hi, {{currentUser.username}}</div>
+  <div>Hi, {{currentUser.user.username}}</div>
 
   <button mat-button routerLink="/">Home</button>
 
-  <button mat-button routerLink="/admin" *ngIf="isProf">Registered users</button>
+  <button mat-button routerLink="/admin" *ngIf="isAdmin">Registered users</button>
 
   <button mat-button (click)="logout()">Logout </button>
+
+  <button mat-button routerLink="/user">User Info</button>
 </mat-toolbar>
