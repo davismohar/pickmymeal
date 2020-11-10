@@ -1,12 +1,14 @@
-<mat-toolbar *ngIf="isUser">
+<mat-toolbar *ngIf="isUser" color="primary">
 
-  <div>Hi, {{currentUser.user.firstName}}</div>
+  <button mat-raised-button routerLink="/">Home</button>
+  <span class="example-spacer"></span>
 
-  <button mat-button routerLink="/">Home</button>
+  <button mat-raised-button routerLink="/admin" *ngIf="isAdmin" style="margin-right: 15px;">
+    Registered users
+  </button>
 
-  <button mat-button routerLink="/admin" *ngIf="isAdmin">Registered users</button>
+  <button mat-raised-button routerLink="/user" style="margin-right: 15px;">User Info</button>
 
-  <button mat-button (click)="logout()">Logout </button>
-
-  <button mat-button routerLink="/user">User Info</button>
+  <button mat-raised-button (click)="logout()" style="margin-right: 15px;">Logout </button>
+  <p style="text-transform: capitalize;">{{currentUser.user.username}}</p>
 </mat-toolbar>

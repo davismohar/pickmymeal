@@ -1,1 +1,18 @@
-<p>condensed-list-card works!</p>
+<mat-card style="display: inline-block; width: 200px;">
+    <mat-card-header>
+        <mat-card-title>{{listType}} List</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <ul *ngFor="let currentFood of foods" style="list-style-type:none; padding-left: 0px;">
+            <li>
+                <mat-divider></mat-divider>
+                <p style="padding-top: 5px; padding-bottom: 5px;">{{currentFood}}</p>
+            </li>
+        </ul>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary">
+            View All
+        </button>
+    </mat-card-actions>
+</mat-card>

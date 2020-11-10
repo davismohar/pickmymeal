@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-condensed-list-card',
@@ -6,10 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./condensed-list-card.component.css']
 })
 export class CondensedListCardComponent implements OnInit {
-
-  constructor() { }
+  @Input() listType: string;
+  personalFoods: String[] = ['Burger', 'Pizza', 'Salad', 'Pancakes', 'Wings']
+  communityFoods: String[] = ['Steak', 'Eggs', 'Bacon', 'Toast', 'Waffles']
+  foods: String[];
+  constructor() {}
 
   ngOnInit(): void {
+    if (this.listType === 'Personal') {
+      this.foods = this.personalFoods;
+    }
+    else {
+      this.foods = this.communityFoods;
+    }
   }
 
 }
