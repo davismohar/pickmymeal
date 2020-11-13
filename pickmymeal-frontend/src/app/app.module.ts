@@ -20,6 +20,8 @@ import { ActionCardComponent } from './action-card/action-card.component';
 import { MealListCardComponent } from './meal-list-card/meal-list-card.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { GenerateMealComponent } from './generate-meal/generate-meal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { UserInfoComponent } from './user-info/user-info.component';
     ActionCardComponent,
     MealListCardComponent,
     ToolbarComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    PageNotFoundComponent,
+    GenerateMealComponent
   ],
   imports: [
     BrowserModule,
