@@ -21,4 +21,8 @@ export class CondensedListCardComponent implements OnInit {
     }
   }
 
+  pickMeal() {
+    alert("We have picked " + this.foods[Math.floor(Math.random()*this.foods.length)])
+  }
+
 }

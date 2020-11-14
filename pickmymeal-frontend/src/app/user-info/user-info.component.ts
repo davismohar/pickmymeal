@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/user';
+import {Role} from '../_models/role';
 import { AuthService } from '../_services/auth.service';
 
 @Component({
@@ -15,6 +16,13 @@ export class UserInfoComponent implements OnInit {
     this.currentUser = this.authService.currentUserValue;
     console.log("user is")
     console.log(this.currentUser.user.username);
+  
+  
   }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.user.role === Role.admin;
+  }
+
 
 }
