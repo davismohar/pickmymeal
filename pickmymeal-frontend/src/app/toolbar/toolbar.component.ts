@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
-import { NotificationService } from '../_services/notification.service';
 import { User } from '../_models/user';
 import { Role } from '../_models/role';
 
@@ -15,7 +14,6 @@ export class ToolbarComponent implements OnInit {
 
   constructor(private router: Router,
     private authService: AuthService,
-    private notifService: NotificationService
   ) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
   }

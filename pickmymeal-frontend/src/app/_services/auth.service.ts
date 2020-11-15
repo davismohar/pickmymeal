@@ -63,11 +63,4 @@ In addition, you can get an observable from behavior subject using the asObserva
     this.currentUserSubject.next(null);
   }
 
-
-  addCourseId(id: string) {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    user.courses.push(id);
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    this.currentUserSubject.next(user);
-  }
 }
