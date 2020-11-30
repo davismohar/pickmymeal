@@ -3,17 +3,17 @@
         <mat-card-title>{{listType}} List</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <ul *ngFor="let currentFood of foods" style="list-style-type:none; padding-left: 0px;">
-            <li>
-                <mat-divider></mat-divider>
-                <p style="padding-top: 5px; padding-bottom: 5px;">{{currentFood}}</p>
-            </li>
-        </ul>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip  selected [color]="primary" *ngFor="let currentFood of foods">
+              {{currentFood}}
+            </mat-chip>
+            <mat-chip color="primary" routerLink="/mealList">
+                View All
+            </mat-chip>
+        </mat-chip-list>
+          
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary">
-            View All
-        </button>
         <button mat-raised-button color="primary" (click)="pickMeal()">
             Pick My Meal!
         </button> 
