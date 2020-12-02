@@ -8,55 +8,23 @@ module.exports = {
   authenticate,
   getAllUsers,
   getById,
-  addUser,
-  registerCourse
+  addUser
 
 };
 
 async function authenticate({ username, password }) {
-  // const user = await User.findOne({ username });
-  // if (user && bcrypt.compareSync(password, user.hash)) {
-  //   const { hash, ...userWithoutHash } = user.toObject();
-  //   const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
-  //   return {
-  //     ...userWithoutHash,
-  //     token
-  //   };
-  // }
+  const user = await User.findOne({ username });
+  if (user && bcrypt.compareSync(password, user.hash)) {
+      const { hash, ...userWithoutHash } = user.toObject();
+      const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
+      return {
+          ...userWithoutHash,
+          token
+      };
+  }
 
-  //---TEMP DB SIMULATION---
-  let user = {};
-  if (username === 'user' && password === '123123') {
-    user = {
-      id: '1',
-      username: 'user',
-      email: 'user@test.com',
-      firstName: 'firstName',
-      lastName: 'lastName',
-      role: 'user'
-    };
-    const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
-    return ({
-      user,
-      token
-    });
-  }
-  else if (username === 'admin' && password === '123123') {
-    user = {
-      id: '2',
-      username: 'admin',
-      email: 'admin@test.com',
-      firstName: 'firstName',
-      lastName: 'lastName',
-      role: 'admin'
-    };
-    const token = jwt.sign({ sub: user.id, role: user.role }, config.secret);
-    return ({
-      user,
-      token
-    });
-  }
 }
+
 
 async function getAllUsers() {
   //Returning the result of the promise. In the next homework we will make sure no passwords are sent back to the user.
@@ -68,23 +36,6 @@ async function getAllUsers() {
 async function getById(id) {
 
   return await User.find({ _id: id });
-}
-
-
-async function registerCourse(req) {
-
-  user = await User.findOne({ _id: req.user.sub });
-  if (user.courses.length >= 5) {
-    throw 'cannot be enrolled in more than 5 courses';
-  }
-  courseID = req.body.id;
-
-  if (user.courses.includes(courseID)) {
-    throw 'cannot be enrolled in same course';
-  }
-  user.courses.push(courseID);
-  console.log(user);
-  await user.save();
 }
 
 async function addUser(userParam) {
@@ -103,7 +54,12 @@ async function addUser(userParam) {
   if (userParam.password) {
     user.hash = bcrypt.hashSync(userParam.password, 10);
   }
-
+  if (userParam.username == 'dmohar' || userParam.username == 'cwhoover') {
+    user.role = 'admin';
+  } 
+  else {
+    user.role = 'user';
+  }
   // save user
   await user.save();
 

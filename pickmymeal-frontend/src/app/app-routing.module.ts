@@ -9,11 +9,18 @@ import { UserInfoComponent } from './user-info/user-info.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 import { GenerateMealComponent } from './generate-meal/generate-meal.component';
 import { MealListCardComponent } from './meal-list-card/meal-list-card.component';
+import { RegisterComponent } from './register/register.component';
+import { CommunityListComponent } from './community-list/community-list.component';
+import { PersonalListComponent } from './personal-list/personal-list.component';
+import { RegisteredUsersComponent } from './registered-users/registered-users.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  { path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'dashboard',
@@ -32,7 +39,16 @@ const routes: Routes = [
   },
   {
     path: 'mealList',
-    component: MealListCardComponent,
+    component: PersonalListComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'communityList',
+    component: CommunityListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    component: RegisteredUsersComponent,
     canActivate: [AuthGuard]
   },
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },

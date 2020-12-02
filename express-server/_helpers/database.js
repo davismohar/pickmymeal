@@ -7,4 +7,5 @@ mongoose.connect(process.env.MONGODB_URI || config.connectionString, {
 
 module.exports = {
   User: require('../models/user.model'),
+  FoodLists: require('../models/foodlist.model')
 };

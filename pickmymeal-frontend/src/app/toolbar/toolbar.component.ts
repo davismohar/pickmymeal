@@ -15,7 +15,11 @@ export class ToolbarComponent implements OnInit {
   constructor(private router: Router,
     private authService: AuthService,
   ) {
-    this.authService.currentUser.subscribe(x => this.currentUser = x);
+    
+    this.authService.currentUser.subscribe(x => {
+      this.currentUser = x;
+      console.log(this.currentUser);
+    });
   }
 
   ngOnInit() {
@@ -23,7 +27,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.user.role === Role.admin;
+    return this.currentUser && this.currentUser.role === Role.admin;
   }
 
   get isUser() {

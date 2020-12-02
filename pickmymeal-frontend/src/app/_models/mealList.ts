@@ -1,4 +1,4 @@
 export class MealList {
-    title: string;
-    listOfMeals: [string];
+    ownerUsername: string;
+    foods: [string];
 }

@@ -7,11 +7,11 @@
             <mat-card-title>Actions</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            <button mat-raised-button [routerLink]="'/generateMeal'" color="primary" style="margin-bottom: 15px;">
-                Generate Meal
+            <button mat-raised-button (click)="pickMeal()" color="primary" style="margin-bottom: 15px;">
+                Pick My Meal!
             </button>
             <br>
-            <button mat-raised-button color="primary" style="margin-bottom: 15px;">
+            <button mat-raised-button routerLink="/mealList" color="primary" style="margin-bottom: 15px;">
                 Modify Personal List
             </button>
             <br>

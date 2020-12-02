@@ -15,13 +15,13 @@ export class UserInfoComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.currentUserValue;
     console.log("user is")
-    console.log(this.currentUser.user.username);
+    console.log(this.currentUser.username);
   
   
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.user.role === Role.admin;
+    return this.currentUser && this.currentUser.role === Role.admin;
   }
 
 

@@ -22,6 +22,10 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GenerateMealComponent } from './generate-meal/generate-meal.component';
+import { CommunityListComponent } from './community-list/community-list.component';
+import { PersonalListComponent } from './personal-list/personal-list.component';
+import { RegisteredUsersComponent } from './registered-users/registered-users.component';
+import { FoodNotificationComponent } from './food-notification/food-notification.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,11 @@ import { GenerateMealComponent } from './generate-meal/generate-meal.component';
     ToolbarComponent,
     UserInfoComponent,
     PageNotFoundComponent,
-    GenerateMealComponent
+    GenerateMealComponent,
+    CommunityListComponent,
+    PersonalListComponent,
+    RegisteredUsersComponent,
+    FoodNotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +57,7 @@ import { GenerateMealComponent } from './generate-meal/generate-meal.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
+  entryComponents: [FoodNotificationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, RootRenderer } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+import { AuthService, MealListService, UserService } from '../_services';
+import { MealList } from '../_models/mealList';
+import { Role } from '../_models/role';
+import { MatDialog } from '@angular/material';
+import { FoodNotificationComponent } from '../food-notification/food-notification.component';
 @Component({
   selector: 'app-meal-list-card',
   templateUrl: './meal-list-card.component.html',
@@ -14,33 +19,68 @@ export class MealListCardComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  personalFoods: String[] = ['Burger', 'Pizza', 'Salad', 'Pancakes', 'Wings']
-  communityFoods: String[] = ['Steak', 'Eggs', 'Bacon', 'Toast', 'Waffles']
+  personalFoods: String[] = ['empty list']
+  communityFoods: String[] = ['empty list']
   foods: String[];
-  constructor() {}
+  mealList: MealList;
+  constructor(private mealListService: MealListService,
+    private authService: AuthService,
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    console.log(this.listType);
     if (this.listType === 'Personal') {
-      this.foods = this.personalFoods;
+      this.mealListService.getPersonalList().subscribe(
+        (list: MealList) => {
+          console.log(list);
+          if (!list) {
+            this.foods = [];
+          }
+          else {
+            this.foods = list.foods;
+            console.log("loaded list of foods")
+          }}
+      );
     }
     else {
-      this.foods = this.communityFoods;
+      this.mealListService.getCommunityList().subscribe(
+        (list: MealList) => {
+          console.log(list);
+          if (!list) {
+            this.foods = [];
+          }
+          else {
+            this.foods = list.foods;
+            console.log("loaded list of foods")
+          }}
+      );
     }
   }
 
+  get isAdmin(): boolean {
+    return this.authService.currentUserValue.role == Role.admin;
+  }
+
   pickMeal() {
-    alert("We have picked " + this.foods[Math.floor(Math.random()*this.foods.length)])
+    const food = this.foods[Math.floor(Math.random()*this.foods.length)];
+    this.dialog.open(FoodNotificationComponent, {
+      data: {name: food}
+    });
   }
 
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
+    // Add food
     if ((value || '').trim()) {
       this.foods.push(value.trim());
     }
-
+    //Send updated list to backend
+    if (this.listType === 'Personal')
+      this.mealListService.updateList(this.foods).subscribe();
+    else 
+      this.mealListService.updateCommunityList(this.foods).subscribe();
     // Reset the input value
     if (input) {
       input.value = '';
@@ -52,6 +92,7 @@ export class MealListCardComponent implements OnInit {
     if (index >= 0) {
       this.foods.splice(index, 1);
     }
+    console.log(this.foods);
   }
 
 }
