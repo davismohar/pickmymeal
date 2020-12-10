@@ -18,6 +18,10 @@ export class MealListService {
         return this.http.get('http://localhost:4000/foodlist/getlist?username=admin');
     }
 
+    getSuggestedList(){
+        return this.http.get('http://localhost:4000/foodlist/getlist?username=suggested');
+    }
+
     getPersonalList() {
         const username = this.authService.currentUserValue.username;
         return this.http.get('http://localhost:4000/foodlist/getlist?username=' + username);
@@ -38,5 +42,11 @@ export class MealListService {
         return this.http.post('http://localhost:4000/foodlist/updatelist', list);
     }
 
+    updateSuggestedList(newList) {
+        console.log("update list to " + newList);
+        const list = {ownerUsername: 'suggested', foods: newList};
+        console.log(list);
+        return this.http.post('http://localhost:4000/foodlist/updatelist', list);
+    }
     
 }

@@ -26,6 +26,7 @@ import { CommunityListComponent } from './community-list/community-list.componen
 import { PersonalListComponent } from './personal-list/personal-list.component';
 import { RegisteredUsersComponent } from './registered-users/registered-users.component';
 import { FoodNotificationComponent } from './food-notification/food-notification.component';
+import { SubmitFoodComponent } from './submit-food/submit-food.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FoodNotificationComponent } from './food-notification/food-notification
     CommunityListComponent,
     PersonalListComponent,
     RegisteredUsersComponent,
-    FoodNotificationComponent
+    FoodNotificationComponent,
+    SubmitFoodComponent
   ],
   imports: [
     BrowserModule,

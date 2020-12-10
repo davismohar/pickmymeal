@@ -1,1 +1,4 @@
-<p>You're having {{data.name}}!</p>
+<div *ngIf="data.name; else elseBlock">
+    You're having {{data.name}}!
+</div>
+<ng-template #elseBlock>No food options available.</ng-template>

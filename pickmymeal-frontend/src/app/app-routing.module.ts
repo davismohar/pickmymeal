@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { CommunityListComponent } from './community-list/community-list.component';
 import { PersonalListComponent } from './personal-list/personal-list.component';
 import { RegisteredUsersComponent } from './registered-users/registered-users.component';
+import { SubmitFoodComponent } from './submit-food/submit-food.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   },
   { path: 'communityList',
     component: CommunityListComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'submitFood',
+    component: SubmitFoodComponent,
     canActivate: [AuthGuard]
   },
   {

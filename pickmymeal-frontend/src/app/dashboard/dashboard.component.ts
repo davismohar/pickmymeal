@@ -1,7 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { AuthService } from '../_services/auth.service';
 import { MealList } from '../_models/mealList';
 import { MealListService } from '../_services';
+import { User } from '../_models/user';
+import { Role } from '../_models/role';
 import { FoodNotificationComponent } from '../food-notification/food-notification.component'
 
 
@@ -12,11 +15,17 @@ import { FoodNotificationComponent } from '../food-notification/food-notificatio
 })
 export class DashboardComponent implements OnInit {
   totalList = [];
+  currentUser: User;
+  
   constructor(private mealListService: MealListService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog, private authService: AuthService) { 
+      this.authService.currentUser.subscribe(x => {
+        this.currentUser = x;
+        console.log(this.currentUser);
+      });
+    }
 
   ngOnInit(): void {
-    this
     this.mealListService.getCommunityList().subscribe(
       (list: MealList) => {this.totalList.push(...list.foods);}
     )
@@ -33,6 +42,10 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(FoodNotificationComponent, {
       data: {name: food}
     });
+  }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role === Role.admin;
   }
 
 }
