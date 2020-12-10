@@ -27,6 +27,7 @@ import { PersonalListComponent } from './personal-list/personal-list.component';
 import { RegisteredUsersComponent } from './registered-users/registered-users.component';
 import { FoodNotificationComponent } from './food-notification/food-notification.component';
 import { SubmitFoodComponent } from './submit-food/submit-food.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { SubmitFoodComponent } from './submit-food/submit-food.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

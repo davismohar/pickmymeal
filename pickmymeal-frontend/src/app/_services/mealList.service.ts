@@ -15,16 +15,16 @@ export class MealListService {
     }
 
     getCommunityList(){
-        return this.http.get('http://localhost:4000/foodlist/getlist?username=admin');
+        return this.http.get('http://localhost:4000/api/foodlist/getlist?username=admin');
     }
 
     getSuggestedList(){
-        return this.http.get('http://localhost:4000/foodlist/getlist?username=suggested');
+        return this.http.get('http://localhost:4000/api/foodlist/getlist?username=suggested');
     }
 
     getPersonalList() {
         const username = this.authService.currentUserValue.username;
-        return this.http.get('http://localhost:4000/foodlist/getlist?username=' + username);
+        return this.http.get('http://localhost:4000/api/foodlist/getlist?username=' + username);
     }
 
     updateList(newList) {
@@ -32,21 +32,21 @@ export class MealListService {
         const username = this.authService.currentUserValue.username;
         const list = {ownerUsername: username, foods: newList};
         console.log(list);
-        return this.http.post('http://localhost:4000/foodlist/updatelist', list);
+        return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
 
     updateCommunityList(newList) {
         console.log("update list to " + newList);
         const list = {ownerUsername: 'admin', foods: newList};
         console.log(list);
-        return this.http.post('http://localhost:4000/foodlist/updatelist', list);
+        return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
 
     updateSuggestedList(newList) {
         console.log("update list to " + newList);
         const list = {ownerUsername: 'suggested', foods: newList};
         console.log(list);
-        return this.http.post('http://localhost:4000/foodlist/updatelist', list);
+        return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
     
 }

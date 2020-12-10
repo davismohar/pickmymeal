@@ -1,7 +1,7 @@
 <div class="main-div">
 
 
-<mat-card style="display: inline-block; width: 200px;">
+<mat-card style="display: inline-block;">
     <mat-card-header>
         <mat-card-title>{{listType}} List</mat-card-title>
     </mat-card-header>
@@ -9,7 +9,7 @@
         <mat-form-field class="mat-chip-list-stacked">
             <mat-card-content>
                 <mat-chip-list #chipList aria-label="Food selection">
-                    <mat-chip *ngFor="let currentFood of foods"  [selectable]="selectable" [removable]="removable"
+                    <mat-chip selected color="primary" *ngFor="let currentFood of foods"  [selectable]="selectable" [removable]="removable"
                         (removed)="remove(currentFood)">
                         {{currentFood}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -26,7 +26,7 @@
     <mat-card-content *ngIf="!isAdmin && listType === 'Community'">
             <mat-card-content>
                 <mat-chip-list #chipList aria-label="Food selection">
-                    <mat-chip *ngFor="let currentFood of foods" [selectable]="selectable">
+                    <mat-chip selected color="primary" *ngFor="let currentFood of foods" [selectable]="selectable">
                         {{currentFood}}
                     </mat-chip>
                 </mat-chip-list>

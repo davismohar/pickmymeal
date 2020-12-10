@@ -8,12 +8,12 @@ import { User } from '../_models/user';
 export class UserService {
     constructor(private http: HttpClient){}
     register(user: User) {
-        return this.http.post(`http://localhost:4000/user/register`, user);
+        return this.http.post(`http://localhost:4000/api/user/register`, user);
       }
     
       getAll() {
         console.log('getAll()');
-        return this.http.get<User[]>(`http://localhost:4000/user/allusers`);
+        return this.http.get<User[]>(`http://localhost:4000/api/user/allusers`);
       }
     
     

@@ -1,4 +1,4 @@
-<mat-card style="display: inline-block; width: 200px;">
+<mat-card>
     <mat-card-header>
         <mat-card-title>{{listType}} List</mat-card-title>
     </mat-card-header>
@@ -8,7 +8,7 @@
         </p>
         <mat-chip-list #chipList aria-label="Fruit selection">
             <div *ngIf="listType!=='Suggested'">
-                <mat-chip selected [color]="primary" *ngFor="let currentFood of foods"
+                <mat-chip selected color="primary" *ngFor="let currentFood of foods"
                     (click)="clickAction(currentFood)">
                     {{currentFood}}
                 </mat-chip>
@@ -21,10 +21,10 @@
                 </mat-chip>
             </div>
             <mat-chip *ngIf="listType==='Personal'" selected color="warn" routerLink="/mealList">
-                View All/Edit List
+                Edit List
             </mat-chip>
             <mat-chip *ngIf="listType==='Community'" selected color="warn" routerLink="/communityList">
-                View All/Edit List
+                Edit List
             </mat-chip>
         </mat-chip-list>
 

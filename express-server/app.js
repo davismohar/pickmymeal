@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 /*CORS stands for Cross Origin Resource Sharing and allows modern web browsers to be able to send AJAX requests and receive HTTP responses for resource from other domains other that the domain serving the client side application.*/
 const cors = require('cors');
@@ -14,14 +15,21 @@ const jwt = require('./_helpers/jwt');
 // Our error handler
 const errorHandler = require('./_helpers/error-handler');
 
-
+app.use('/', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/dashboard', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/admin', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/user', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/mealList', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/communityList', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/login', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+app.use('/register', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(jwt());
 
-app.use('/user', require('./routes/user.router'));
-app.use('/foodlist', require('./routes/foodlist.router'));
+app.use('/api/user', require('./routes/user.router'));
+app.use('/api/foodlist', require('./routes/foodlist.router'));
 
 
 

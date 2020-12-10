@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, RootRenderer } from '@angular/core';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
-import { AuthService, MealListService, UserService } from '../_services';
+import { AuthService, MealListService, NotificationService, UserService } from '../_services';
 import { MealList } from '../_models/mealList';
 import { Role } from '../_models/role';
 import { MatDialog } from '@angular/material';
@@ -25,7 +25,8 @@ export class MealListCardComponent implements OnInit {
   mealList: MealList;
   constructor(private mealListService: MealListService,
     private authService: AuthService,
-    private dialog: MatDialog) {}
+    private dialog: MatDialog,
+    private notification: NotificationService) {}
 
   ngOnInit(): void {
     if (this.listType === 'Personal') {
@@ -67,7 +68,10 @@ export class MealListCardComponent implements OnInit {
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-
+    if (value.length > 25) {
+      this.notification.showNotif("Food must be less than 25 characters long")
+      return;
+    }
     // Add food
     if ((value || '').trim()) {
       this.foods.push(value.trim());

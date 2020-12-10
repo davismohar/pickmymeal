@@ -1,9 +1,8 @@
-.example-spacer {
-    flex: 1 1 auto;
-    display: inline-block;
-  }
-
-  .container {
+  .card-list {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+  }
+  /* Row Gap */
+  .card-list > *:not(:last-child) {
+    margin-bottom: 32px;
   }

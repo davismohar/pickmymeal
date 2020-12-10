@@ -1,26 +1,27 @@
-<div class="container" style="padding: 40px;">
-    <span></span>
-    <app-condensed-list-card [listType]="'Personal'"></app-condensed-list-card>
-    <app-condensed-list-card [listType]="'Community'"></app-condensed-list-card>
-    <app-condensed-list-card [listType]="'Suggested'" *ngIf="isAdmin"></app-condensed-list-card>
-
-    <mat-card style="display: inline-block; width: 200px;">
-        <mat-card-header>
-            <mat-card-title>Actions</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <button mat-raised-button (click)="pickMeal()" color="primary" style="margin-bottom: 15px;">
-                Pick Any Meal!
-            </button>
-            <!-- <br>
-            <button mat-raised-button routerLink="/mealList" color="primary" style="margin-bottom: 15px;">
-                Modify Personal List
-            </button> -->
-            <br>
-            <button mat-raised-button color="primary" routerLink="/submitFood">
-                Submit Community Item
-            </button>
-        </mat-card-content>
-    </mat-card>
-    <span></span>
+<div class="card-list" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.lt-lg="50%">
+        <app-condensed-list-card [listType]="'Personal'"></app-condensed-list-card>
+    </div>
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.="50%">
+        <app-condensed-list-card [listType]="'Community'"></app-condensed-list-card>
+    </div>
+    <div *ngIf="isAdmin"fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.md="50%">
+        <app-condensed-list-card [listType]="'Suggested'" ></app-condensed-list-card>
+    </div>
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.md="50%">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Actions</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <button mat-raised-button (click)="pickMeal()" color="primary" style="margin-bottom: 15px;">
+                    Pick Any Meal!
+                </button>
+                <br>
+                <button mat-raised-button color="primary" routerLink="/submitFood">
+                    Submit Community Item
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

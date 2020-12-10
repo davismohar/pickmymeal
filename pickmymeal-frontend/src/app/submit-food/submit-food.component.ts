@@ -24,7 +24,7 @@ export class SubmitFoodComponent implements OnInit {
 
   ngOnInit() {
     this.foodForm = this.formBuilder.group({
-      foodName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]]
+      foodName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*'), Validators.maxLength(25)]]
     })
   }
 

@@ -2,12 +2,17 @@
     <mat-card class="registration-card">
         <mat-card-header>
             <mat-card-title>Submit Community Item</mat-card-title>
+            
         </mat-card-header>
+        <div style="font-size: 10px;">
+            <br>25 character max
+        </div>
         <mat-card-content>
             <div class="form-group">
                 <mat-form-field>
                     <input matInput placeholder="Food Name" type="text" formControlName="foodName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.foodName.errors }">
-                    <mat-hint *ngIf="submitted && f.foodName.errors" >
+                    <mat-hint *ngIf="submitted && f.foodName.errors">
+                        <mat-hint *ngIf="f.foodName.errors.maxLength">Food name must be less than 25 characters</mat-hint>
                         <mat-hint *ngIf="f.foodName.errors.required">Food Name is required</mat-hint>
                         <mat-hint *ngIf="f.foodName.errors.pattern">Food Name is using illegal characters.</mat-hint>
                     </mat-hint>

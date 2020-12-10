@@ -39,7 +39,7 @@ In addition, you can get an observable from behavior subject using the asObserva
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`http://localhost:4000/user/authenticate`, { username, password })
+    return this.http.post<any>(`http://localhost:4000/api/user/authenticate`, { username, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
