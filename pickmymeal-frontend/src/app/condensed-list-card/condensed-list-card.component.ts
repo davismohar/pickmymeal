@@ -23,6 +23,7 @@ export class CondensedListCardComponent implements OnInit {
       this.authService.currentUser.subscribe(x => {
         this.currentUser = x;
         console.log(this.currentUser);
+        console.log("IS ADMIN" +this.currentUser.role)
       });
     }
 
@@ -81,7 +82,6 @@ export class CondensedListCardComponent implements OnInit {
 
   clickAction(food: String) {
     if (this.isAdmin && this.listType === "Suggested") {
-      console.log(food);
       const index: number = this.foods.indexOf(food);
       if (index !== -1) {
         this.foods.splice(index, 1);
@@ -102,8 +102,12 @@ export class CondensedListCardComponent implements OnInit {
           if ((food || '').trim()) {
             communityFoods.push(food.trim());
           }
-          this.mealListService.updateCommunityList(communityFoods).subscribe();
-          window.location.reload();
+          this.mealListService.updateCommunityList(communityFoods).subscribe(
+            () => {
+              window.location.reload();
+            }
+          );
+          
         }
       );
     }

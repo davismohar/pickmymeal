@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './_guards/auth.guard'
+import { Role } from './_models/role'
 
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
@@ -54,7 +55,8 @@ const routes: Routes = [
   {
     path: 'admin',
     component: RegisteredUsersComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: {roles: [Role.admin]}
   },
   { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
   {path: '**', component: PageNotFoundComponent}

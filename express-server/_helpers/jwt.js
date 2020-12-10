@@ -13,8 +13,8 @@ function jwt() {
       '/',
       '/user/register',
       '/user/authenticate',
-      '/foodlist/getlist',
-      '/foodlist/updatelist'
+      // '/foodlist/getlist',
+      // '/foodlist/updatelist'
     ]
   });
 }

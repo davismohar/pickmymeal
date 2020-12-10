@@ -52,8 +52,11 @@ export class SubmitFoodComponent implements OnInit {
         if ((newFood.foodName || '').trim()) {
           foods.push(newFood.foodName.trim());
         }
-        this.mealListService.updateSuggestedList(foods).subscribe();
-        this.router.navigate(['/dashboard']);
+        this.mealListService.updateSuggestedList(foods).subscribe(
+          () => {
+            this.router.navigate(['/dashboard']);
+          }
+        );  
       }
     );
     console.log("Submit food");
