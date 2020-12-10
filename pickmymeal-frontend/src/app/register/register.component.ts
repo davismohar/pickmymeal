@@ -12,6 +12,8 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['register.component.css']
 
 })
+
+// Register a new user
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;

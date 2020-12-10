@@ -9,6 +9,8 @@ import { Role } from '../_models/role';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.css']
 })
+
+// Toolbar view (shown above all views)
 export class ToolbarComponent implements OnInit {
   currentUser: User;
 

@@ -7,7 +7,7 @@ module.exports = {
     updateList
 };
 
-
+// Get requested list (by user)
 async function getList(username) {
   console.log(username);
   const list = await Food.findOne({ownerUsername: username}).select();
@@ -15,6 +15,7 @@ async function getList(username) {
   return list;
 }
 
+// Update given list
 async function updateList(newList) {
     //if list exists
     console.log(newList);

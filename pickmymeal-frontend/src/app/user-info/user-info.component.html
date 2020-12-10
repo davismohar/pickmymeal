@@ -4,7 +4,7 @@
       <mat-card-title>Current User Info</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p style="color: red">
+    <p style="color: red" *ngIf="isAdmin">
       ADMIN
     </p>
     <p>

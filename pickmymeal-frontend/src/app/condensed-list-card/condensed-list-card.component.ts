@@ -13,6 +13,8 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './condensed-list-card.component.html',
   styleUrls: ['./condensed-list-card.component.css']
 })
+
+// Shows a single condensed list
 export class CondensedListCardComponent implements OnInit {
   @Input() listType: string;
   personalFoods: String[] = ['Burger', 'Pizza', 'Salad', 'Pancakes', 'Wings']
@@ -21,6 +23,8 @@ export class CondensedListCardComponent implements OnInit {
   foods: String[];
   selectable = true;
   removable = true;
+
+  // Initialize class
   constructor(private mealListService: MealListService,
     private dialog: MatDialog, private authService: AuthService) { 
       this.authService.currentUser.subscribe(x => {
@@ -30,6 +34,7 @@ export class CondensedListCardComponent implements OnInit {
       });
     }
 
+  // Obtain correct list from API
   ngOnInit(): void {
     if (this.listType === 'Personal') {
       this.mealListService.getPersonalList().subscribe(
@@ -72,6 +77,7 @@ export class CondensedListCardComponent implements OnInit {
     }
   }
 
+  // Pick a meal to show user
   pickMeal() {
     const food = this.foods[Math.floor(Math.random()*this.foods.length)];
     this.dialog.open(FoodNotificationComponent, {
@@ -79,10 +85,12 @@ export class CondensedListCardComponent implements OnInit {
     });
   }
 
+  // Determine if current user is an administrator
   get isAdmin() {
     return this.currentUser && this.currentUser.role === Role.admin;
   }
 
+  // If list is suggested and user is admin, move from suggested to community
   clickAction(food: String) {
     if (this.isAdmin && this.listType === "Suggested") {
       const index: number = this.foods.indexOf(food);
@@ -116,6 +124,7 @@ export class CondensedListCardComponent implements OnInit {
     }
   }
 
+  // Remove a food from the current list
   remove(food: string): void {
     const index = this.foods.indexOf(food);
     if (index >= 0) {

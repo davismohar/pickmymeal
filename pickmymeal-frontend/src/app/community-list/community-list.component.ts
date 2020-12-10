@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './community-list.component.html',
   styleUrls: ['./community-list.component.css']
 })
+
+// Shows the shared list
 export class CommunityListComponent implements OnInit {
 
   constructor() { }

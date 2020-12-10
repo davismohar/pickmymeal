@@ -11,8 +11,11 @@ import { FoodNotificationComponent } from '../food-notification/food-notificatio
   templateUrl: './meal-list-card.component.html',
   styleUrls: ['./meal-list-card.component.css']
 })
+
+// Display an editable meal list
 export class MealListCardComponent implements OnInit {
 
+  // Class fields
   @Input() listType: string;
   visible = true;
   selectable = true;
@@ -23,11 +26,14 @@ export class MealListCardComponent implements OnInit {
   communityFoods: String[] = ['empty list']
   foods: String[];
   mealList: MealList;
+
+  // Init class
   constructor(private mealListService: MealListService,
     private authService: AuthService,
     private dialog: MatDialog,
     private notification: NotificationService) {}
 
+  // Obtain correct meal list
   ngOnInit(): void {
     if (this.listType === 'Personal') {
       this.mealListService.getPersonalList().subscribe(
@@ -54,10 +60,12 @@ export class MealListCardComponent implements OnInit {
     }
   }
 
+  // Determine if current user is admin
   get isAdmin(): boolean {
     return this.authService.currentUserValue.role == Role.admin;
   }
 
+  // Pick a meal from current list
   pickMeal() {
     const food = this.foods[Math.floor(Math.random()*this.foods.length)];
     this.dialog.open(FoodNotificationComponent, {
@@ -65,9 +73,11 @@ export class MealListCardComponent implements OnInit {
     });
   }
 
+  // Add food to list
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
+    // Food cannot be more than 25 characters
     if (value.length > 25) {
       this.notification.showNotif("Food must be less than 25 characters long")
       return;
@@ -87,6 +97,7 @@ export class MealListCardComponent implements OnInit {
     }
   }
 
+  // Remove food from list
   remove(food: string): void {
     const index = this.foods.indexOf(food);
     if (index >= 0) {

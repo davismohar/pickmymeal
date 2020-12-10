@@ -15,6 +15,7 @@ const jwt = require('./_helpers/jwt');
 // Our error handler
 const errorHandler = require('./_helpers/error-handler');
 
+// Handle serving frontend paths
 app.use('/', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
 app.use('/dashboard', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
 app.use('/admin', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
@@ -23,11 +24,14 @@ app.use('/mealList', express.static(path.join(__dirname + '../../pickmymeal-fron
 app.use('/communityList', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
 app.use('/login', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
 app.use('/register', express.static(path.join(__dirname + '../../pickmymeal-frontend/dist/pickmymeal-frontend')));
+
+// Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(jwt());
 
+// Handle protected api paths
 app.use('/api/user', require('./routes/user.router'));
 app.use('/api/foodlist', require('./routes/foodlist.router'));
 

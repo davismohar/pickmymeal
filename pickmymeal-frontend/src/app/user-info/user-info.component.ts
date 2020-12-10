@@ -8,6 +8,8 @@ import { AuthService } from '../_services/auth.service';
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.css']
 })
+
+// Display user info
 export class UserInfoComponent implements OnInit {
   currentUser: User;
   constructor(private authService: AuthService,) { }

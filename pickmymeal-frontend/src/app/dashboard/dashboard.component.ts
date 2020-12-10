@@ -13,10 +13,13 @@ import { FoodNotificationComponent } from '../food-notification/food-notificatio
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+// Main dashboard view
 export class DashboardComponent implements OnInit {
   totalList = [];
   currentUser: User;
   
+  // Init class
   constructor(private mealListService: MealListService,
     private dialog: MatDialog, private authService: AuthService) { 
       this.authService.currentUser.subscribe(x => {
@@ -25,6 +28,7 @@ export class DashboardComponent implements OnInit {
       });
     }
 
+  // Obtain all foods for selection
   ngOnInit(): void {
     this.mealListService.getCommunityList().subscribe(
       (list: MealList) => {this.totalList.push(...list.foods);}
@@ -37,6 +41,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
+  // Pick a meal from both personal and community lists
   pickMeal() {
     const food = this.totalList[Math.floor(Math.random()*this.totalList.length)];
     this.dialog.open(FoodNotificationComponent, {
@@ -44,6 +49,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // Determine if current user is admin
   get isAdmin() {
     return this.currentUser && this.currentUser.role === Role.admin;
   }

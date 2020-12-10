@@ -12,6 +12,7 @@ module.exports = {
 
 };
 
+// Authenticate given user
 async function authenticate({ username, password }) {
   const user = await User.findOne({ username });
   if (user && bcrypt.compareSync(password, user.hash)) {
@@ -32,12 +33,13 @@ async function getAllUsers() {
 }
 
 
-
+// Get user by ID
 async function getById(id) {
 
   return await User.find({ _id: id });
 }
 
+// Add a new user 
 async function addUser(userParam) {
 
   // validate

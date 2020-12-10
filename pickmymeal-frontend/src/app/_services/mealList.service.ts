@@ -1,32 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject,  Observable} from 'rxjs';
-import { map } from 'rxjs/operators';
-import {MealList} from '../_models/mealList';
 import {AuthService} from './auth.service';
-
-// import { User } from '../_models/user';
 
 @Injectable({ providedIn: 'root' })
 export class MealListService {
 
-    constructor(private http: HttpClient, private authService: AuthService) {
+    constructor(private http: HttpClient, private authService: AuthService) {}
 
-    }
-
+    // Get shared list
     getCommunityList(){
         return this.http.get('http://localhost:4000/api/foodlist/getlist?username=admin');
     }
 
+    // Get list of suggestings (only editable by admin)
     getSuggestedList(){
         return this.http.get('http://localhost:4000/api/foodlist/getlist?username=suggested');
     }
 
+    // Get list of current user
     getPersonalList() {
         const username = this.authService.currentUserValue.username;
         return this.http.get('http://localhost:4000/api/foodlist/getlist?username=' + username);
     }
 
+    // Update personal list
     updateList(newList) {
         console.log("update list to " + newList);
         const username = this.authService.currentUserValue.username;
@@ -35,6 +32,7 @@ export class MealListService {
         return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
 
+    // Update shared list
     updateCommunityList(newList) {
         console.log("update list to " + newList);
         const list = {ownerUsername: 'admin', foods: newList};
@@ -42,6 +40,7 @@ export class MealListService {
         return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
 
+    // Update list of suggestions
     updateSuggestedList(newList) {
         console.log("update list to " + newList);
         const list = {ownerUsername: 'suggested', foods: newList};

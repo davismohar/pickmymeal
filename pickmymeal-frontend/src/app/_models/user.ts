@@ -1,5 +1,6 @@
 import { Role } from './role';
 
+// Identifying information for a single user
 export class User {
     token: string;
     username: string;
