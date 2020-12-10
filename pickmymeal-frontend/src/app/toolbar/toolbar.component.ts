@@ -20,7 +20,6 @@ export class ToolbarComponent implements OnInit {
     
     this.authService.currentUser.subscribe(x => {
       this.currentUser = x;
-      console.log(this.currentUser);
     });
   }
 

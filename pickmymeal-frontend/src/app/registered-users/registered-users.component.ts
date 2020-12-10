@@ -17,7 +17,6 @@ export class RegisteredUsersComponent implements OnInit {
 
   // Obtain users from backend service
   ngOnInit() {
-    console.log('admin component');
     this.userService.getAll().subscribe(users => {
       this.users = users;
     });

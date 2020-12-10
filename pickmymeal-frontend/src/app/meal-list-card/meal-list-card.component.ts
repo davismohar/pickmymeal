@@ -38,7 +38,6 @@ export class MealListCardComponent implements OnInit {
     if (this.listType === 'Personal') {
       this.mealListService.getPersonalList().subscribe(
         (list: MealList) => {
-          console.log(list);
           if (!list) {
             this.foods = [];
           }

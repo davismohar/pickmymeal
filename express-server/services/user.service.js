@@ -28,7 +28,7 @@ async function authenticate({ username, password }) {
 
 
 async function getAllUsers() {
-  //Returning the result of the promise. In the next homework we will make sure no passwords are sent back to the user.
+  //Returning the result of the promise.
   return await User.find().select('-hash');
 }
 

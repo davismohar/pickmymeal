@@ -8,23 +8,6 @@ import { User } from '../_models/user';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-
-
-
-
-
-  // tslint:disable-next-line:max-line-length
-  /*BehaviorSubject is a type of subject, a subject is a special type of observable so you can subscribe to messages like any other observable. The unique features of BehaviorSubject are:
-
-    It needs an initial attendanceRate as it must always return a attendanceRate on subscription even if it hasn't received a next()
-    Upon subscription, it returns the last attendanceRate of the subject. A regular observable only triggers when it receives an onnext
-    at any point, you can retrieve the last attendanceRate of the subject in a non-observable code using the getValue() method.
-
-Unique features of a subject compared to an observable are:
-
-    It is an observer in addition to being an observable so you can also send values to a subject in addition to subscribing to it.
-
-In addition, you can get an observable from behavior subject using the asObservable() method on BehaviorSubject. */
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<User>;
 

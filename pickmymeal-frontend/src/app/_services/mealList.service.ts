@@ -25,26 +25,20 @@ export class MealListService {
 
     // Update personal list
     updateList(newList) {
-        console.log("update list to " + newList);
         const username = this.authService.currentUserValue.username;
         const list = {ownerUsername: username, foods: newList};
-        console.log(list);
         return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
 
     // Update shared list
     updateCommunityList(newList) {
-        console.log("update list to " + newList);
         const list = {ownerUsername: 'admin', foods: newList};
-        console.log(list);
         return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
 
     // Update list of suggestions
     updateSuggestedList(newList) {
-        console.log("update list to " + newList);
         const list = {ownerUsername: 'suggested', foods: newList};
-        console.log(list);
         return this.http.post('http://localhost:4000/api/foodlist/updatelist', list);
     }
     

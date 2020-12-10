@@ -13,7 +13,6 @@ export class UserService {
     
     // Get all users
     getAll() {
-      console.log('getAll()');
       return this.http.get<User[]>(`http://localhost:4000/api/user/allusers`);
     }
     

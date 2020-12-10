@@ -24,7 +24,6 @@ export class DashboardComponent implements OnInit {
     private dialog: MatDialog, private authService: AuthService) { 
       this.authService.currentUser.subscribe(x => {
         this.currentUser = x;
-        console.log(this.currentUser);
       });
     }
 
@@ -36,7 +35,6 @@ export class DashboardComponent implements OnInit {
     this.mealListService.getPersonalList().subscribe(
       (list: MealList) => {
         this.totalList.push(...list.foods);
-        console.log(this.totalList);
       }
     )
   }

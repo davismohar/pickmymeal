@@ -29,8 +29,6 @@ export class CondensedListCardComponent implements OnInit {
     private dialog: MatDialog, private authService: AuthService) { 
       this.authService.currentUser.subscribe(x => {
         this.currentUser = x;
-        console.log(this.currentUser);
-        console.log("IS ADMIN" +this.currentUser.role)
       });
     }
 
@@ -39,39 +37,33 @@ export class CondensedListCardComponent implements OnInit {
     if (this.listType === 'Personal') {
       this.mealListService.getPersonalList().subscribe(
         (list: MealList) => {
-          console.log(list);
           if (!list) {
             this.foods = [];
           }
           else {
             this.foods = list.foods;
-            console.log("loaded list of foods")
           }}
       );
     }
     else if (this.listType === 'Suggested') {
       this.mealListService.getSuggestedList().subscribe(
         (list: MealList) => {
-          console.log(list);
           if (!list) {
             this.foods = [];
           }
           else {
             this.foods = list.foods;
-            console.log("loaded list of foods")
           }}
       )
     }
     else {
       this.mealListService.getCommunityList().subscribe(
         (list: MealList) => {
-          console.log(list);
           if (!list) {
             this.foods = [];
           }
           else {
             this.foods = list.foods;
-            console.log("loaded list of foods")
           }}
       );
     }
@@ -97,18 +89,15 @@ export class CondensedListCardComponent implements OnInit {
       if (index !== -1) {
         this.foods.splice(index, 1);
         this.mealListService.updateSuggestedList(this.foods).subscribe();
-        console.log(this.foods);
       }
       let communityFoods: String[];
       this.mealListService.getCommunityList().subscribe(
         (list: MealList) => {
-          console.log(list);
           if (!list) {
             communityFoods = [];
           }
           else {
             communityFoods = list.foods;
-            console.log(communityFoods)
           }
           if ((food || '').trim()) {
             communityFoods.push(food.trim());
