@@ -1,13 +1,20 @@
+<div class="main-div">
 <mat-card style="display: inline-block; width: 500px;">
   <mat-card-header>
       <mat-card-title>Current User Info</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <p style="color: red">
+      ADMIN
+    </p>
     <p>
       Username: {{currentUser.username}}
     </p>
     <p>
       Email: {{currentUser.email}}
+    </p>
+    <p>
+      Name: {{currentUser.firstName}} {{currentUser.lastName}}
     </p>
   </mat-card-content>
   <!-- <mat-card-actions>
@@ -16,3 +23,4 @@
   </button>
   </mat-card-actions> -->
 </mat-card>
+</div>

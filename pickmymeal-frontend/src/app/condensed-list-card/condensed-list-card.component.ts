@@ -7,6 +7,7 @@ import { User } from '../_models/user';
 import { Role } from '../_models/role';
 import { AuthService } from '../_services/auth.service';
 
+
 @Component({
   selector: 'app-condensed-list-card',
   templateUrl: './condensed-list-card.component.html',
@@ -18,6 +19,8 @@ export class CondensedListCardComponent implements OnInit {
   communityFoods: String[] = ['Steak', 'Eggs', 'Bacon', 'Toast', 'Waffles']
   currentUser: User;
   foods: String[];
+  selectable = true;
+  removable = true;
   constructor(private mealListService: MealListService,
     private dialog: MatDialog, private authService: AuthService) { 
       this.authService.currentUser.subscribe(x => {
@@ -110,6 +113,14 @@ export class CondensedListCardComponent implements OnInit {
           
         }
       );
+    }
+  }
+
+  remove(food: string): void {
+    const index = this.foods.indexOf(food);
+    if (index >= 0) {
+      this.foods.splice(index, 1);
+      this.mealListService.updateSuggestedList(this.foods).subscribe()
     }
   }
 }

@@ -1,3 +1,6 @@
+<div class="main-div">
+
+
 <mat-card style="display: inline-block; width: 200px;">
     <mat-card-header>
         <mat-card-title>{{listType}} List</mat-card-title>
@@ -6,7 +9,7 @@
         <mat-form-field class="mat-chip-list-stacked">
             <mat-card-content>
                 <mat-chip-list #chipList aria-label="Food selection">
-                    <mat-chip *ngFor="let currentFood of foods" [selectable]="selectable" [removable]="removable"
+                    <mat-chip *ngFor="let currentFood of foods"  [selectable]="selectable" [removable]="removable"
                         (removed)="remove(currentFood)">
                         {{currentFood}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -35,3 +38,4 @@
         </button>
     </mat-card-actions>
 </mat-card>
+</div>

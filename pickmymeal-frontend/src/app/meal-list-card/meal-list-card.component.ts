@@ -28,7 +28,6 @@ export class MealListCardComponent implements OnInit {
     private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    console.log(this.listType);
     if (this.listType === 'Personal') {
       this.mealListService.getPersonalList().subscribe(
         (list: MealList) => {
@@ -38,20 +37,17 @@ export class MealListCardComponent implements OnInit {
           }
           else {
             this.foods = list.foods;
-            console.log("loaded list of foods")
           }}
       );
     }
     else {
       this.mealListService.getCommunityList().subscribe(
         (list: MealList) => {
-          console.log(list);
           if (!list) {
             this.foods = [];
           }
           else {
             this.foods = list.foods;
-            console.log("loaded list of foods")
           }}
       );
     }
@@ -92,7 +88,10 @@ export class MealListCardComponent implements OnInit {
     if (index >= 0) {
       this.foods.splice(index, 1);
     }
-    console.log(this.foods);
+    if (this.listType === 'Personal')
+      this.mealListService.updateList(this.foods).subscribe();
+    else 
+      this.mealListService.updateCommunityList(this.foods).subscribe();
   }
 
 }

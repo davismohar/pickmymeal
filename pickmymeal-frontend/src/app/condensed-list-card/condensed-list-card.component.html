@@ -7,17 +7,27 @@
             Click suggestions to add to community list (Admin Only)
         </p>
         <mat-chip-list #chipList aria-label="Fruit selection">
-            <mat-chip  selected [color]="primary" *ngFor="let currentFood of foods" (click)="clickAction(currentFood)">
-              {{currentFood}}
+            <div *ngIf="listType!=='Suggested'">
+                <mat-chip selected [color]="primary" *ngFor="let currentFood of foods"
+                    (click)="clickAction(currentFood)">
+                    {{currentFood}}
+                </mat-chip>
+            </div>
+            <div *ngIf="listType==='Suggested'">
+                <mat-chip  *ngFor="let currentFood of foods" selected color="accent" [selectable]="selectable" 
+                    [removable]="removable" (removed)="remove(currentFood)" (click)="clickAction(currentFood)">
+                    {{currentFood}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+            </div>
+            <mat-chip *ngIf="listType==='Personal'" selected color="warn" routerLink="/mealList">
+                View All/Edit List
             </mat-chip>
-            <mat-chip *ngIf="listType==='Personal'" color="primary" routerLink="/mealList">
-                View All
-            </mat-chip>
-            <mat-chip *ngIf="listType==='Community'" color="primary" routerLink="/communityList">
-                View All
+            <mat-chip *ngIf="listType==='Community'" selected color="warn" routerLink="/communityList">
+                View All/Edit List
             </mat-chip>
         </mat-chip-list>
-          
+
     </mat-card-content>
     <mat-card-actions *ngIf="listType!=='Suggested'">
         <button mat-raised-button color="primary" (click)="pickMeal()">

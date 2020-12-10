@@ -8,5 +8,6 @@ export class User {
     email: string;
     role: Role;
     courses: string[];
-
+    firstName: string;
+    lastName: string;
 }

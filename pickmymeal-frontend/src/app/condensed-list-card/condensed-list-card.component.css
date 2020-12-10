@@ -1,3 +1,7 @@
 .mat-card-content {
     padding: 10%;
   }
+
+mat-chip {
+  width: 100%;
+}

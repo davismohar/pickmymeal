@@ -1,9 +1,6 @@
-.user-info-card {
-  height:100px;width:300px;
-
+.main-div{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-/* .mat-card-header {
-  background-color: #BBBBBB;
-  color: white;
-} */

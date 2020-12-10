@@ -14,10 +14,6 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUserValue;
-    console.log("user is")
-    console.log(this.currentUser.username);
-  
-  
   }
 
   get isAdmin() {

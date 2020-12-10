@@ -40,13 +40,11 @@ export class SubmitFoodComponent implements OnInit {
     let foods: String[];
     this.mealListService.getSuggestedList().subscribe(
       (list: MealList) => {
-        console.log(list);
         if (!list) {
           foods = [];
         }
         else {
           foods = list.foods;
-          console.log(foods)
         }
         const newFood = this.foodForm.value;
         if ((newFood.foodName || '').trim()) {
@@ -59,6 +57,5 @@ export class SubmitFoodComponent implements OnInit {
         );  
       }
     );
-    console.log("Submit food");
   }
 }
